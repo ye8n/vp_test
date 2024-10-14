@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>gridEx7</title>
+  <style>
+
+    /* 스타일 정리 */
+    .vertical-txt{
+      writing-mode: vertical-lr; /*vertical-lr 텍스트의 진행 방향의 가로, 세로 정렬. 상속. lefr>right? */
+      text-orientation: upright; /* writing-mode 작성시 영어의 글자 방향*/
+      letter-spacing: 2px;
+    }
+    .border-style{
+      border: 6px solid #000;
+    }
+
+
+
+    .container{
+      font-weight: bold;
+      text-transform: capitalize;
+      width: 90%;
+      margin: 20px auto;
+      color:#fff;
+
+
+      display: grid;
+      /* 4행, 3열 */
+      grid-template-columns: minmax(100px, auto) 1fr minmax(70px, auto);
+      grid-auto-rows: 70px minmax(200px, auto) minmax(200px, auto) 70px ;
+    }
+
+    .container header, .container footer{
+      background: #000; color: #fff;
+
+ /*
+      grid-column: span 3;
+      grid-column: 1 / 4;
+      */
+      grid-column: 1 / -1;
+
+      /*
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      */
+      display: grid;
+      place-items: center;
+    }
+
+    .container .list{
+      list-style: none;
+      margin: 0; padding: 0;
+      background: #0d92f4;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .container .blank{
+      background: #c62e2e;
+      grid-row: 3 / 4;
+      grid-column: 1 / 2;
+
+      border-bottom: none;
+    }
+
+    .container .video-wrapper{
+      background: #000;
+      position: relative;
+      overflow: hidden; /* video에 width 없애고 wrapper에 hidden: 가장 많이 사용하는 방법? */
+
+      grid-column: 2 / 3;
+      grid-row: 2 / 4;
+    }
+
+    .container .video-wrapper video{
+      /* width: 100%; */
+      object-fit: cover;
+      position: absolute;      
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .container .video-wrapper h1{
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.3s;
+
+      background: #000;
+      padding: 6px 30px;
+      
+    }
+
+    .container .video-wrapper h1:hover{
+      border-radius: 30px;
+    }
+
+    .container .video-wrapper h1 a{
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .container aside{
+      background: #00ff9c;
+
+      display: grid;
+      place-items: center;
+    }
+
+    .container aside:last-of-type{
+      border-bottom: none;
+    }
+
+
+  </style>
+</head>
+<body>
+<div class="container">
+    <header>header</header>
+    
+    <ul class="list vertical-txt border-style">
+      <li>list1</li>
+      <li>list2</li>
+      <li>list3</li>
+    </ul>
+    <div class="blank border-style"></div> <!-- 왼쪽 아래 장식용 -->
+
+    <div class="video-wrapper">
+      <video src="./sampleV.mp4" autoplay loop muted></video>
+      <h1><a href="#">grid</a></h1>
+    </div>
+
+    <aside class="item1 vertical-txt border-style">아이템1</aside>
+    <aside class="item2 vertical-txt border-style">아이템2</aside>
+
+    <footer>footer</footer>
+</body>
+</html>
